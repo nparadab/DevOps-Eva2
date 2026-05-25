@@ -1,0 +1,45 @@
+version: '3.8'
+services:
+  back-despachos:
+    build: ./back-Despachos_SpringBoot/Springboot-API-REST-DESPACHO
+    container_name: back-despachos
+    ports:
+      - "8081:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/innovadb
+      - SPRING_DATASOURCE_USERNAME=admin
+      - SPRING_DATASOURCE_PASSWORD=admin123
+    depends_on:
+      - db
+    networks:
+      - backend-net
+
+  back-ventas:
+    build: ./back-Ventas_SpringBoot/Springboot-API-REST
+    container_name: back-ventas
+    ports:
+      - "8082:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/innovadb
+      - SPRING_DATASOURCE_USERNAME=admin
+      - SPRING_DATASOURCE_PASSWORD=admin123
+    depends_on:
+      - db
+    networks:
+      - backend-net
+
+  db:
+    image: postgres:15
+    container_name: postgres-db
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin123
+      - POSTGRES_DB=innovadb
+    ports:
+      - "5432:5432"
+    networks:
+      - backend-net
+
+networks:
+  backend-net:
+    driver: bridge
