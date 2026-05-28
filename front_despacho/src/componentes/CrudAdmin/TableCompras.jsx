@@ -7,7 +7,7 @@ export const TableCompras = () => {
   const [ventas, setVentas] = useState([]);
 
   const compras = async () => {
-    await axios.get("http://32.194.222.193:8082/api/v1/ventas", {
+    await axios.get("http://10.0.2.40:8082/api/v1/ventas", {
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json"
