@@ -87,7 +87,8 @@ export const TableDespachos = () => {
           <FormCierreDespacho
             despacho={despachoSeleccionado}
             onClose={() => {
-              setOpenModal(false), despacho();
+              setOpenModal(false);
+              despacho();
             }}
           />
         )}
@@ -95,3 +96,4 @@ export const TableDespachos = () => {
     </>
   );
 };
+
