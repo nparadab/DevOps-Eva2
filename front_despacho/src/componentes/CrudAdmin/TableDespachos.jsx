@@ -7,7 +7,7 @@ export const TableDespachos = () => {
   const [despachos, setDespachos] = useState([]);
 
   const despacho = async () => {
-    await axios.get("http://32.194.222.193:8081/api/v1/despachos", {
+    await axios.get("http://10.0.2.40:8081/api/v1/despachos", {
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json"
