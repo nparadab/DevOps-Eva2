@@ -5,8 +5,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: admin123
       MYSQL_DATABASE: innovadb
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: admin123
     ports:
       - "3306:3306"
     volumes:
@@ -19,7 +17,7 @@ services:
       - db
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/innovadb?allowPublicKeyRetrieval=true&useSSL=false
-      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: admin123
     ports:
       - "8081:8080"
@@ -31,7 +29,7 @@ services:
       - db
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/innovadb?allowPublicKeyRetrieval=true&useSSL=false
-      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: admin123
     ports:
       - "8082:8080"
