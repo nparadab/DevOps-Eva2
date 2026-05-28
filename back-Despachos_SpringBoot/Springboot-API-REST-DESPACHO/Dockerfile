@@ -8,11 +8,11 @@ RUN mvn clean package -DskipTests
 FROM eclipse-temurin:17-jdk
 WORKDIR /app
 
-# Copiar el JAR compilado (igual que antes)
+# Copiar el JAR compilado
 COPY --from=build /app/target/*.jar app.jar
 
-# Copiar el application.properties de Despachos
-COPY back-Despachos_SpringBoot/Springboot-API-REST-DESPACHO/src/main/resources/application.properties /app/application.properties
+# Copiar el application.properties local
+COPY src/main/resources/application.properties /app/application.properties
 
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","app.jar"]
