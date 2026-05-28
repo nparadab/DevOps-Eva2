@@ -13,7 +13,7 @@ services:
       - db_data:/var/lib/mysql
 
   back-despachos:
-    build: ./back-Despachos_SpringBoot
+    build: ./back-Despachos_SpringBoot/Springboot-API-REST-DESPACHO
     container_name: back-despachos
     depends_on:
       - db
@@ -25,7 +25,7 @@ services:
       - "8081:8080"
 
   back-ventas:
-    build: ./back-Ventas_SpringBoot
+    build: ./back-Ventas_SpringBoot/Springboot-API-REST
     container_name: back-ventas
     depends_on:
       - db
