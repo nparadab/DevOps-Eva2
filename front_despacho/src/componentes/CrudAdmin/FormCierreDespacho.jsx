@@ -15,16 +15,18 @@ export const FormCierreDespacho = ({ despacho, onClose }) => {
     console.log("Datos del formulario:", jsonData);
 
     try {
+      // ✅ PUT al backend real en puerto 8081
       await axios.put(
-        `http://192.168.320/api/v1/despachos/${despacho.idDespacho}`,
+        `http://10.0.2.68:8081/api/v1/despachos/${despacho.idDespacho}`,
         jsonData,
         {
-          headers:{
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-      }
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+          },
         }
       );
+
       Swal.fire({
         title: "Despacho modificado 🛻!",
         text: "El despacho ha sido modificado exitosamente",
@@ -51,7 +53,6 @@ export const FormCierreDespacho = ({ despacho, onClose }) => {
           <input
             disabled={true}
             type="text"
-            placeholder="Ingresa fecha de despacho"
             className="border border-gray-300 rounded-lg block w-full p-1 text-slate-400"
             value={despacho.idDespacho}
           />
@@ -60,7 +61,6 @@ export const FormCierreDespacho = ({ despacho, onClose }) => {
           <label className="block font-bold mb-2">Fecha despacho</label>
           <input
             type="date"
-            placeholder="Elige patente de camión"
             className="border border-gray-300 rounded-lg block w-full text-slate-400 p-1"
             value={despacho.fechaDespacho}
             disabled={true}
@@ -80,7 +80,7 @@ export const FormCierreDespacho = ({ despacho, onClose }) => {
           <input
             type="number"
             defaultValue={despacho.intento}
-            className="border border-gray-300 rounded-lg block w-full  p-1"
+            className="border border-gray-300 rounded-lg block w-full p-1"
             {...register("intento", { required: true })}
           />
         </div>
@@ -88,7 +88,7 @@ export const FormCierreDespacho = ({ despacho, onClose }) => {
           <label className="block font-bold mb-2">Despacho entregado</label>
           <select
             defaultValue={false}
-            className="border border-gray-300 rounded-lg block w-full  p-1"
+            className="border border-gray-300 rounded-lg block w-full p-1"
             {...register("despachado", { required: true })}
           >
             <option value={false}>Despacho abierto</option>
