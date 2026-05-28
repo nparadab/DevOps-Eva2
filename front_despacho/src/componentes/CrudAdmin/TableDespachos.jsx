@@ -7,20 +7,17 @@ export const TableDespachos = () => {
   const [despachos, setDespachos] = useState([]);
 
   const despacho = async () => {
-    await axios
-      .get("http://back-despachos:8081/api/v1/despachos", {
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        }
-      })
-      .then((response) => {
-        console.log(response.data);
-        setDespachos(response.data);
-      });
+    await axios.get("http://32.194.222.193:8081/api/v1/despachos", {
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      }
+    }).then((response) => {
+      console.log(response.data);
+      setDespachos(response.data);
+    });
   };
 
-  // Llamada a la función para obtener los datos cuando el componente se monta
   useEffect(() => {
     despacho();
   }, []);
@@ -78,9 +75,7 @@ export const TableDespachos = () => {
         </div>
       </section>
       <Modal
-        onClose={() => {
-          setOpenModal(false);
-        }}
+        onClose={() => setOpenModal(false)}
         open={openModal}
       >
         {despachoSeleccionado && (
