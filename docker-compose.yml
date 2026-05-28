@@ -37,11 +37,10 @@ services:
   frontend:
     build: ./front_despacho
     container_name: frontend
-    depends_on:
-      - back-despachos
-      - back-ventas
     ports:
       - "80:80"
+    # ❌ Se eliminó depends_on para que no levante microservicios propios
+    # ✅ Solo sirve React/nginx y consume los backends ya definidos
 
 volumes:
   db_data:
