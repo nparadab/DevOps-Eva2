@@ -11,7 +11,7 @@ export const FormDespacho = ({ venta, onClose }) => {
       fechaDespacho: data.fechaDespacho,
       patenteCamion: data.patenteCamion,
       intento: 0,
-      entregado: false,
+      despachado: false,   // corregido: coincide con tu entidad Despacho
       idCompra: venta.idVenta,
       direccionCompra: venta.direccionCompra,
       valorCompra: venta.valorCompra,
@@ -24,22 +24,26 @@ export const FormDespacho = ({ venta, onClose }) => {
     console.log("Datos del formulario:", jsonData);
 
     try {
+      // ✅ PUT a back-ventas en puerto 8082
       await axios.put(
-        `http://192.168.30/api/v1/ventas/${venta.idVenta}`,
+        `http://10.0.2.68:8082/api/v1/ventas/${venta.idVenta}`,
         jsonDataSales,
         {
-          headers:{
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-      }
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+          },
         }
       );
-      await axios.post("http://192.168.320/api/v1/despachos", jsonData, {
-        headers:{
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-    }
+
+      // ✅ POST a back-despachos en puerto 8081
+      await axios.post("http://10.0.2.68:8081/api/v1/despachos", jsonData, {
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
       });
+
       Swal.fire({
         title: "Despacho registrado 🛻!",
         text: "El despacho ha sido generado con éxito en la base de datos",
@@ -51,6 +55,7 @@ export const FormDespacho = ({ venta, onClose }) => {
     }
     onClose();
   };
+
   return (
     <>
       <form
@@ -79,9 +84,7 @@ export const FormDespacho = ({ venta, onClose }) => {
           />
         </div>
         <div className="mb-5">
-          <label className="block font-bold mb-2">
-            Orden de compra asociado
-          </label>
+          <label className="block font-bold mb-2">Orden de compra asociado</label>
           <input
             type="number"
             disabled={true}
